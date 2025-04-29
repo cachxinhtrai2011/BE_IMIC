@@ -1,20 +1,45 @@
-﻿using System.Text;
+﻿using DataAccess.DataObject;
+using DataAccess.DataAccessLayer;
+using System.Text;
 
 namespace IMIC_LuyenTap
 {
     internal class Program
     {
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
+            DataAccess.DataAccessLayer.Bai3 _bai3 = new DataAccess.DataAccessLayer.Bai3();  
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Nhập số A: ");
             int a = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Nhập số B: ");
             int b = int.Parse(Console.ReadLine()!);
             TinhToan(a, b);
+
+            //Buổi 3:
+            Console.WriteLine("Nhập phân số thứ nhất:");
+            PhanSo ps1 = NhapPhanSo();
+
+            Console.WriteLine("Nhập phân số thứ hai:");
+            PhanSo ps2 = NhapPhanSo();
+
+            Console.WriteLine($"Tổng: {ps1} + {ps2} = {_bai3.Cong(ps1, ps2)}");
+            Console.WriteLine($"Hiệu: {ps1} - {ps2} = {_bai3.Tru(ps1, ps2)}");
+            Console.WriteLine($"Tích: {ps1} * {ps2} = {_bai3.Nhan(ps1, ps2)}");
+            Console.WriteLine($"Thương: {ps1} / {ps2} = {_bai3.Chia(ps1, ps2)}");
+        }
+        static PhanSo NhapPhanSo()
+        {
+            Console.Write("Nhập tử số: ");
+            int tu = int.Parse(Console.ReadLine());
+
+            Console.Write("Nhập mẫu số: ");
+            int mau = int.Parse(Console.ReadLine());
+
+            return new PhanSo(tu, mau);
         }
         //Bài 1
-        public void TinhToan(int a, int b)
+        static void TinhToan(int a, int b)
         {
             Console.WriteLine($"Tích 2 số: {a*b}");
             Console.WriteLine($"Hiệu 2 số: {a-b}");
@@ -78,5 +103,6 @@ namespace IMIC_LuyenTap
         {
             Console.WriteLine($"Độ F: {doC * 1.8 + 32}");
         }
+
     }
 }
